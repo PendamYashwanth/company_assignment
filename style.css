@@ -52,6 +52,23 @@ button {
   border: none;
   font: inherit;
 }
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mb {
+  margin-bottom: 12px;
+}
+
+.align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* -----------------------------FONT STYLING----------------------------- */
 
 h1 {
@@ -116,46 +133,6 @@ hr {
   margin: 12px 0px;
 }
 
-a {
-  display: inline-block;
-  color: lightgrey;
-  font-size: 16px;
-  font-family: "Inter", "Roboto", sans-serif;
-  white-space: nowrap;
-  padding: 12px;
-  border: 1px solid white;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.15s ease-in-out;
-}
-
-a:hover {
-  background: rgba(0, 0, 0, 0.23);
-  color: white;
-  transform: scale(1.03);
-  text-decoration: none;
-}
-a:active {
-  transform: scale(0.98);
-}
-
-.d-flex {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.mb {
-  margin-bottom: 12px;
-}
-
-.align-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 /* -----------------------------MEDIA QUERIES----------------------------- */
 
 .container {
@@ -183,7 +160,6 @@ a:active {
   padding: 16px 0px;
   display: flex;
   flex-direction: column;
-  /* background-color: red; */
   gap: 12px;
 }
 
@@ -192,7 +168,6 @@ a:active {
 }
 
 .product-details-section {
-  /* background-color: pink; */
   flex-grow: 1;
 }
 

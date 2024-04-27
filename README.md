@@ -67,3 +67,7 @@ Product data API- https://cdn.shopify.com/s/files/1/0564/3685/0790/files/singleP
 ### Others
 
 Font family - Inter - https://fonts.google.com/specimen/Inter
+
+## Deployed Link
+
+The project is deployed on [Netlify](https://yashwanth-pendam-mermeto-assignment.netlify.app/).
