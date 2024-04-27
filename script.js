@@ -64,13 +64,19 @@ async function fetchData() {
 
 //-------------------------------------------------RENDER VIEWS-------------------------------------------------
 
-// --------------------Render loading view--------------------
+// -------------------------------------------------Render loading view-------------------------------------------------
 
 const renderLoadingView = () => {
-  console.log("loading");
+  const bgContainer = document.getElementById("bgContainer");
+  bgContainer.innerHTML = `
+   <div class = 'align-center'>
+   <p>Loading...</p></div>
+`;
+  bgContainer.style.fontSize = "2rem";
+  bgContainer.classList.add("align-center");
 };
 
-// --------------------Render success view--------------------
+// -------------------------------------------------Render success view-------------------------------------------------
 
 // Product images section
 
@@ -364,10 +370,17 @@ const renderSuccessView = () => {
   renderProductDetailsSection();
 };
 
-// --------------------Render Failure view--------------------
+// -------------------------------------------------Render Failure view-------------------------------------------------
 
 const renderFailureView = () => {
-  console.log("fail");
+  const bgContainer = document.getElementById("bgContainer");
+  bgContainer.innerHTML = `
+   <div class = 'align-center'>
+   <p>Oops! Something went wrong.
+   Please try again later</p></div>
+`;
+  bgContainer.style.fontSize = "2rem";
+  bgContainer.classList.add("align-center");
 };
 
 // --------------------Conditional rendering based on Api status--------------------

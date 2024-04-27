@@ -49,6 +49,7 @@ body {
 button {
   cursor: pointer;
   display: inline-block;
+  border: none;
 }
 /* -----------------------------FONT STYLING----------------------------- */
 
@@ -145,6 +146,13 @@ a:active {
 
 .mb {
   margin-bottom: 12px;
+}
+
+.align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* -----------------------------MEDIA QUERIES----------------------------- */
