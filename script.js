@@ -167,12 +167,13 @@ const renderProductDetailsSection = () => {
 
   console.log(productData);
 
-  const colorValues = productData.options[0].values;
+  const colorValuesList = productData.options[0].values;
 
   const createAndAppendColorVarients = (
     colorVarientsContainer,
     bgColor,
-    colorName
+    colorName,
+    isFirst
   ) => {
     const colorVarient = createElement("div");
     colorVarient.style.backgroundColor = bgColor;
@@ -182,6 +183,16 @@ const renderProductDetailsSection = () => {
 
     const tickMark = createElement("img");
     tickMark.src = "./assets/tick_mark.png";
+
+    if (isFirst) {
+      selectedColor = colorName;
+
+      const tickMark = createElement("img");
+      tickMark.src = "./assets/tick_mark.png";
+
+      colorVarient.classList.add("color-varient");
+      colorVarient.appendChild(tickMark);
+    }
 
     // Handles onchanage events of color variants
     colorVarient.onclick = () => {
@@ -203,9 +214,16 @@ const renderProductDetailsSection = () => {
     };
   };
 
-  for (let obj of colorValues) {
+  for (let i = 0; i < colorValuesList.length; i++) {
+    const obj = colorValuesList[i];
+    const isFirst = i === 0;
     for (key in obj) {
-      createAndAppendColorVarients(colorVarientsContainer, obj[key], key);
+      createAndAppendColorVarients(
+        colorVarientsContainer,
+        obj[key],
+        key,
+        isFirst
+      );
     }
   }
 
@@ -227,7 +245,11 @@ const renderProductDetailsSection = () => {
   );
   productDetailSectionEl.appendChild(sizeVarientsContainer);
 
-  const createAndAppendSizeVarients = (sizeVarientsContainer, size) => {
+  const createAndAppendSizeVarients = (
+    sizeVarientsContainer,
+    size,
+    isFirst
+  ) => {
     const sizeVarient = createElement("div");
     sizeVarient.classList.add("size-varient-container");
 
@@ -244,16 +266,21 @@ const renderProductDetailsSection = () => {
     sizeVarient.appendChild(labelEl);
     sizeVarientsContainer.appendChild(sizeVarient);
 
+    if (isFirst) {
+      radioElement.checked = true;
+      selectedSize = size;
+    }
+
     // Handles onchanage events of size variants
     radioElement.onclick = () => {
       selectedSize = size;
     };
   };
 
-  for (let size of sizeValues) {
-    createAndAppendSizeVarients(sizeVarientsContainer, size);
+  for (let i = 0; i < sizeValues.length; i++) {
+    const isFirst = i === 0;
+    createAndAppendSizeVarients(sizeVarientsContainer, sizeValues[i], isFirst);
   }
-
   // Quanity and Add to cart button
   const quantityAndAddToCartButtonContainer = createElement("section");
   quantityAndAddToCartButtonContainer.classList.add(
@@ -288,10 +315,13 @@ const renderProductDetailsSection = () => {
 
   quantityAndAddToCartButtonContainer.appendChild(addToCartBtn);
 
+  // Handle onclick Add to cart btn
+  addToCartBtn.onclick = () => {};
+
   // Cart message
   const addToCartMessage = createElement("div");
   addToCartMessage.classList.add("add-to-cart-message", "mb");
-  addToCartMessage.textContent = "ADDED TO CART";
+  addToCartMessage.textContent = `${productData.title} with Color ${selectedColor} and Size ${selectedSize} added to cart`;
   productDetailSectionEl.appendChild(addToCartMessage);
 
   createAndAppendHrElement(productDetailSectionEl);
