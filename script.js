@@ -10,6 +10,7 @@ const apiStatusConstants = {
 };
 
 let productData;
+let selectedColor;
 let selectedSize;
 let apiStatus = apiStatusConstants.initial;
 
@@ -168,17 +169,43 @@ const renderProductDetailsSection = () => {
 
   const colorValues = productData.options[0].values;
 
-  const createAndAppendColorVarients = (colorVarientsContainer, bgColor) => {
+  const createAndAppendColorVarients = (
+    colorVarientsContainer,
+    bgColor,
+    colorName
+  ) => {
     const colorVarient = createElement("div");
     colorVarient.style.backgroundColor = bgColor;
     colorVarient.style.height = "50px";
     colorVarient.style.width = "50px";
     colorVarientsContainer.appendChild(colorVarient);
+
+    const tickMark = createElement("img");
+    tickMark.src = "./assets/tick_mark.png";
+
+    // Handles onchanage events of color variants
+    colorVarient.onclick = () => {
+      selectedColor = colorName;
+
+      // Removes any existing tick marks
+      const allColorVariants = document.getElementsByClassName("color-varient");
+      const colorVariantsArray = [...allColorVariants];
+      colorVariantsArray.forEach((variant) => {
+        variant.innerHTML = "";
+        variant.classList.remove("color-varient");
+      });
+
+      const tickMark = createElement("img");
+      tickMark.src = "./assets/tick_mark.png";
+
+      colorVarient.classList.add("color-varient");
+      colorVarient.appendChild(tickMark);
+    };
   };
 
   for (let obj of colorValues) {
     for (key in obj) {
-      createAndAppendColorVarients(colorVarientsContainer, obj[key]);
+      createAndAppendColorVarients(colorVarientsContainer, obj[key], key);
     }
   }
 
@@ -215,13 +242,12 @@ const renderProductDetailsSection = () => {
     labelEl.textContent = size;
     labelEl.classList.add("size-labels");
     sizeVarient.appendChild(labelEl);
+    sizeVarientsContainer.appendChild(sizeVarient);
 
     // Handles onchanage events of size variants
     radioElement.onclick = () => {
       selectedSize = size;
     };
-
-    sizeVarientsContainer.appendChild(sizeVarient);
   };
 
   for (let size of sizeValues) {

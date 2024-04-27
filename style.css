@@ -225,6 +225,18 @@ a:active {
 }
 
 /* -----------------------------ELEMENTS STYLING----------------------------- */
+/* COLOR VARIENTS STYLING */
+
+.color-varient {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-varient img {
+  width: 70%;
+  margin: 0px auto;
+}
 
 /* SIZE VARIENTS STYLING */
 
