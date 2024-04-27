@@ -10,6 +10,7 @@ const apiStatusConstants = {
 };
 
 let productData;
+let selectedSize;
 let apiStatus = apiStatusConstants.initial;
 
 // Function to create HTML element dynamically based on provided tag name
@@ -215,12 +216,18 @@ const renderProductDetailsSection = () => {
     labelEl.classList.add("size-labels");
     sizeVarient.appendChild(labelEl);
 
+    // Handles onchanage events of size variants
+    radioElement.onclick = () => {
+      selectedSize = size;
+    };
+
     sizeVarientsContainer.appendChild(sizeVarient);
   };
 
   for (let size of sizeValues) {
     createAndAppendSizeVarients(sizeVarientsContainer, size);
   }
+
   // Quanity and Add to cart button
   const quantityAndAddToCartButtonContainer = createElement("section");
   quantityAndAddToCartButtonContainer.classList.add(
