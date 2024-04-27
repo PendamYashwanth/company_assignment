@@ -83,6 +83,7 @@ const renderLoadingView = () => {
 const createAndAppendThumbnailImages = (thumbnailContainerEl, imgSrc) => {
   const thumbnailImgElement1 = createElement("img");
   thumbnailImgElement1.src = imgSrc;
+  thumbnailImgElement1.alt = "thumbnail";
   thumbnailContainerEl.appendChild(thumbnailImgElement1);
 };
 
@@ -91,6 +92,7 @@ const renderProductImageSection = () => {
 
   let imgElement = createElement("img");
   imgElement.src = "./assets/Rectangle 4.png";
+  imgElement.alt = "product image";
   imgElement.classList.add("product-image");
   productImageSectionEl.appendChild(imgElement);
 
@@ -170,8 +172,6 @@ const renderProductDetailsSection = () => {
   const colorVarientsContainer = createElement("section");
   colorVarientsContainer.classList.add("d-flex");
   productDetailSectionEl.appendChild(colorVarientsContainer);
-
-  console.log(productData);
 
   const colorValuesList = productData.options[0].values;
 
@@ -299,9 +299,11 @@ const renderProductDetailsSection = () => {
   quantityContainer.classList.add("quantity-container");
 
   const subBtn = createElement("button");
+  subBtn.type = "button";
   subBtn.textContent = "-";
 
   const addBtn = createElement("button");
+  addBtn.type = "button";
   addBtn.textContent = "+";
 
   const quantity = createElement("p");
@@ -328,10 +330,12 @@ const renderProductDetailsSection = () => {
   quantityAndAddToCartButtonContainer.appendChild(quantityContainer);
 
   const addToCartBtn = createElement("button");
+  addToCartBtn.type = "button";
   addToCartBtn.classList.add("btn-add-to-cart");
 
   const cartImg = createElement("img");
   cartImg.src = "./assets/cart.png";
+  cartImg.alt = "cart";
   addToCartBtn.appendChild(cartImg);
 
   const AddtoCartText = createElement("p");
