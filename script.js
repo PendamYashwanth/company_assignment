@@ -291,12 +291,31 @@ const renderProductDetailsSection = () => {
 
   const quantityContainer = createElement("div");
   quantityContainer.classList.add("quantity-container");
+
   const subBtn = createElement("button");
   subBtn.textContent = "-";
+
   const addBtn = createElement("button");
   addBtn.textContent = "+";
+
   const quantity = createElement("p");
+  quantity.id = "quantity";
   quantity.textContent = 1;
+
+  addBtn.onclick = () => {
+    const quantityEl = document.getElementById("quantity");
+    const quantity = parseInt(quantityEl.textContent);
+    quantityEl.textContent = quantity + 1;
+  };
+
+  subBtn.onclick = () => {
+    const quantityEl = document.getElementById("quantity");
+    const quantity = parseInt(quantityEl.textContent);
+    if (quantity > 1) {
+      quantityEl.textContent = quantity - 1;
+    }
+  };
+
   quantityContainer.appendChild(subBtn);
   quantityContainer.appendChild(quantity);
   quantityContainer.appendChild(addBtn);
@@ -316,13 +335,21 @@ const renderProductDetailsSection = () => {
   quantityAndAddToCartButtonContainer.appendChild(addToCartBtn);
 
   // Handle onclick Add to cart btn
-  addToCartBtn.onclick = () => {};
+  addToCartBtn.onclick = () => {
+    const messageContainerEl = document.getElementById("messageContainer");
+    messageContainerEl.innerHTML = "";
+
+    const addToCartMessage = createElement("p");
+    addToCartMessage.classList.add("add-to-cart-message", "mb");
+    addToCartMessage.textContent = `${productData.title} with Color ${selectedColor} and Size ${selectedSize} added to cart`;
+
+    messageContainerEl.appendChild(addToCartMessage);
+  };
 
   // Cart message
-  const addToCartMessage = createElement("div");
-  addToCartMessage.classList.add("add-to-cart-message", "mb");
-  addToCartMessage.textContent = `${productData.title} with Color ${selectedColor} and Size ${selectedSize} added to cart`;
-  productDetailSectionEl.appendChild(addToCartMessage);
+  const addToCartMessageContainer = createElement("div");
+  addToCartMessageContainer.id = "messageContainer";
+  productDetailSectionEl.appendChild(addToCartMessageContainer);
 
   createAndAppendHrElement(productDetailSectionEl);
 
