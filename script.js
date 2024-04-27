@@ -197,6 +197,7 @@ const renderProductDetailsSection = () => {
       tickMark.src = "./assets/tick_mark.png";
 
       colorVarient.classList.add("color-varient");
+      colorVarient.style.outlineColor = bgColor;
       colorVarient.appendChild(tickMark);
     }
 
@@ -216,6 +217,7 @@ const renderProductDetailsSection = () => {
       tickMark.src = "./assets/tick_mark.png";
 
       colorVarient.classList.add("color-varient");
+      colorVarient.style.outlineColor = bgColor;
       colorVarient.appendChild(tickMark);
     };
   };
